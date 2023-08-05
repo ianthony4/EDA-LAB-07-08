@@ -42,6 +42,15 @@ public class ResultChecker {
 	public void setPalabras(String[] palabras_) {
 		this.titulos = palabras_;
 	}
-
+    
+    public String imprimir(){
+		//Entrando a Result Checker
+		StringBuilder rpta= new StringBuilder();
+		for (int i = 0; i < getResults().length; i++) {			
+			rpta.append(titulos[i] + " Plagio :"+result[i] +"\n");
+		}
+		System.out.println(rpta);
+		return rpta.toString();
+	}
 }
     
