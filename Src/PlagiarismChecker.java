@@ -33,4 +33,18 @@ public class PlagiarismChecker {
 		}
 		return false;
 	}
+
+    public ResultChecker verifyPlagiarism(String path){
+
+		ResultChecker result= new ResultChecker(trees.size());
+		int progress=0;
+		Document d = new Document(path);
+
+		for (int i = 0; i < trees.size(); i++) {
+			progress=((i+1)*100)/trees.size();
+			result.setResult(d.match(trees.get(i)),listDocuments.get(i));
+			respuesta= respuesta+progress+"%" ;		
+		}	
+		return result;		
+	}
 }
