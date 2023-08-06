@@ -1,32 +1,66 @@
-import org.w3c.dom.Node;
-
 /**
- * Arbol AVL, junto con metodos necesarios para usarse, como insercion y busqueda
- **/
+ *  En esta clase se implementa el arbol AVL con los metodos entre los
+ *  mas importantes de insercion, que permite agregar un nuevo nodo al Arbol 
+ *  y busqueda, que encuentra el nodo en el arbol. 
+ */
 
-public class AVLTree<T extends Comparable<? super T> {
-    private Node<T> root;
+public class AVLTree<T extends Comparable<? super T>> {
 
-    // getters and setters
-    public Node<T> getRoot() {
-        return this.root;
-    }
-    public void setRoot(Node<T> root) {
-        this.root = root;
-    }
+	private Node<T> root;
 
-    public int height(Node<T> node){
-        if(node == null)
-            return 0;
-        return node.getheight();
-    }
+	public Node<T> getRoot() {
+		return root;
+	}
 
-    public int max(int n1, int n2) {
+	public void setRoot(Node<T> root) {
+		this.root = root;
+	}
+
+	// Este metodo devuelve la altura del nodo actual
+	public int height(Node<T> node) {
+		if (node == null)
+			return 0;
+
+		return node.getHeight();
+	}
+
+	// Este metodo devuelve el valor maximo de dos numeros (dos alturas)
+	public int max(int n1, int n2) {
 		return Math.max(n1, n2);
 		// return (n1 > n2) ? n1 : n2;
 	}
 
-    public Node<T> insert(Node<T> current, T value) {
+	// Este metodo gira a la derecha el nodo desequilibrado
+	public Node<T> rightRotate(Node<T> current) {
+		Node<T> temp = current.getLeft();
+		Node<T> T2 = temp.getRight();
+
+		temp.setRight(current);
+		current.setLeft(T2);
+
+		// Actualizar la altura despues de la rotacion
+		current.setHeight(max(height(current.getLeft()), height(current.getRight())) + 1);
+		temp.setHeight(max(height(temp.getLeft()), height(temp.getRight())) + 1);
+
+		return temp;
+	}
+
+	// Este metodo gira a la izquierda el movimiento de cabeza desequilibrado
+	public Node<T> leftRotate(Node<T> current) {
+		Node<T> temp = current.getRight();
+		Node<T> T2 = temp.getLeft();
+
+		temp.setLeft(current);
+		current.setRight(T2);
+
+		// Actualizar la altura despues de la rotacion
+		current.setHeight(max(height(current.getLeft()), height(current.getRight())) + 1);
+		temp.setHeight(max(height(temp.getLeft()), height(temp.getRight())) + 1);
+
+		return temp;
+	}
+	// Este metodo permite insertar un nuevo nodo al Arbol 
+	public Node<T> insert(Node<T> current, T value) {
 
 		// Inserta el nuevo valor
 		if (current == null)
@@ -69,7 +103,7 @@ public class AVLTree<T extends Comparable<? super T> {
 		return current;
 	}
 
-    // Este metodo devuelve el balanceo del nodo actual
+	// Este metodo devuelve el balanceo del nodo actual
 	public int getBalance(Node<T> node) {
 		if (node == null)
 			return 0;
@@ -89,4 +123,5 @@ public class AVLTree<T extends Comparable<? super T> {
 
 		return current;
 	}
-} 
+
+}
