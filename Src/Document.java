@@ -3,23 +3,48 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 /**
- * Esta clase tendra 3 atributos y contiene una lista
+ * Esta clase tiene 3 atributos y contiene una lista
  * de metodos para ayudarnos a leer y verificar cada
  * documento que se carguen.
  */
 
- public class Document{
-    //Atributos
+public class Document{
+	//Atributos
 	private String fileName;
 	private Phrase phrase;
-	final static int max_number_word = 10;
+	final static int max_number_word=10;
 
-    // Constructor
-    public Document() {
+	//Constructores
+	public Document() {
 
 	}
 
-    /**
+	public Document(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public Document(String fileName, int frequency) {
+		this.fileName = fileName;
+	}
+
+	//Getters y setters
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public Phrase getPhrase() {
+		return phrase;
+	}
+
+	public void setPhrase(Phrase phrase) {
+		this.phrase = phrase;
+	}
+
+	/**
 	 * Este metodo nos ayuda a dividir un archivo en frases e
 	 * insertarlos en el arbol AVL
 	 */
@@ -50,8 +75,9 @@ import java.util.Scanner;
 		return tree;
 	}
 
-    // Este metodo lee un arbol AVL y verifica si hay coincidencias
-    public boolean match(AVLTree<String> tree){
+
+	// Este metodo lee un arbol AVL y verifica si hay coincidencias
+	public boolean match(AVLTree<String> tree){
 		Scanner input;
 		try{
 			input = new Scanner(new FileReader(this.getFileName()));
@@ -76,5 +102,4 @@ import java.util.Scanner;
 		input.close();
 		return false;
 	}
-
- }
+}
