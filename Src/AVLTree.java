@@ -69,19 +69,24 @@ public class AVLTree<T extends Comparable<? super T> {
 		return current;
 	}
 
-    // Este metodo gira a la izquierda el movimiento de cabeza desequilibrado
-	public Node<T> leftRotate(Node<T> current) {
-		Node<T> temp = current.getRight();
-		Node<T> T2 = temp.getLeft();
+    // Este metodo devuelve el balanceo del nodo actual
+	public int getBalance(Node<T> node) {
+		if (node == null)
+			return 0;
 
-		temp.setLeft(current);
-		current.setRight(T2);
-
-		// Actualizar la altura despues de la rotacion
-		current.setHeight(max(height(current.getLeft()), height(current.getRight())) + 1);
-		temp.setHeight(max(height(temp.getLeft()), height(temp.getRight())) + 1);
-
-		return temp;
+		return height(node.getLeft()) - height(node.getRight());
 	}
+	// Este metodo encuentra el nodo en el arbol.
+	public Node<T> find(AVLTree<T> tree, T v) {
+		Node<T> current = tree.root;
+		while (current != null && (current.getValue().compareTo(v) > 0 || current.getValue().compareTo(v) < 0)) {
 
+			if (v.compareTo(current.getValue()) > 0)
+				current = current.getRight();
+			else
+				current = current.getLeft();
+		}
+
+		return current;
+	}
 } 
