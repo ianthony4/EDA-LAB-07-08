@@ -50,4 +50,31 @@ import java.util.Scanner;
 		return tree;
 	}
 
+    // Este metodo lee un arbol AVL y verifica si hay coincidencias
+    public boolean match(AVLTree<String> tree){
+		Scanner input;
+		try{
+			input = new Scanner(new FileReader(this.getFileName()));
+		}
+		catch(FileNotFoundException e){
+			System.out.println("Error en Document/maching_count");
+			return false;
+		}
+
+		Phrase p = new Phrase();
+		while (input.hasNext()) {
+			String word = input.next().toLowerCase();
+			p.addword(word);
+			// Compruebe si el arbol avl contiene la frase de 10 palabras
+			if (p.getNumbersWord() == max_number_word) {
+				if (tree.find(tree, p.getData().toString().trim()) != null) {
+					input.close();
+					return true;
+				}
+			}
+		}
+		input.close();
+		return false;
+	}
+
  }
