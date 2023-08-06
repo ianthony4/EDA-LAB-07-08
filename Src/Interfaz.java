@@ -31,4 +31,17 @@ public class Interfaz extends JFrame {
 	private static ArrayList<String> bd;
 	private static String file;
 
+    public Interfaz() {
+		this.processLabel = new JLabel("Estado:");
+		this.dirLabel = new JLabel("Detector de Plagios ");
+		this.selectButton = new JButton("Subir archivos a la Base de Ddatos");
+		this.processArea = new JTextArea();
+		this.checkButton = new JButton("Revisar");
+		this.subPanel = new JPanel();
+		this.contentPanel = new JPanel();
+		this.selectButtonArchivo = new JButton("Seleccionar archivo");
+		bd= new ArrayList<String>();
+		file ="";
+	}
+
 }
