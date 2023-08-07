@@ -12,6 +12,36 @@ public class Node<T extends Comparable<? super T>> {
 		height = 1;
 	}
 
-	
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public Node<T> getLeft() {
+		return left;
+	}
+
+	public void setLeft(Node<T> left) {
+		this.left = left;
+	}
+
+	public Node<T> getRight() {
+		return right;
+	}
+
+	public void setRight(Node<T> right) {
+		this.right = right;
+	}
+
+	public T getValue() {
+		return value;
+	}
+
+	public void setValue(T value) {
+		this.value = value;
+	}
 
 }
